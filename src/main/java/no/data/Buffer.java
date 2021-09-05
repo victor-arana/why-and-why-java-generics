@@ -2,7 +2,12 @@ package no.data;
 
 public interface Buffer {
 
-    boolean offer(Object i);
+    /**
+     * Inserts an element
+     * @param value
+     * @return
+     */
+    boolean offer(Object value);
 
     Object poll();
 }
