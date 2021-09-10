@@ -3,6 +3,7 @@ package no.data;
 public class CircularBuffer implements Buffer {
 
     private final Object[] buffer;
+    private int readCursor = 0;
     private int writeCursor = 0;
 
     public CircularBuffer(int size) {
@@ -22,7 +23,12 @@ public class CircularBuffer implements Buffer {
 
     @Override
     public Object poll() {
-        return null;
+        Object value = buffer[readCursor];
+        if ( value != null) {
+            buffer[readCursor] = null;
+            readCursor = next(readCursor);
+        }
+        return value;
     }
 
     private int next(int index) {
