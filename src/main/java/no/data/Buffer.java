@@ -9,5 +9,10 @@ public interface Buffer {
      */
     boolean offer(Object value);
 
+    /**
+     * Removes an element from the buffer
+     * @return element at the front of the queue
+     *
+     */
     Object poll();
 }
