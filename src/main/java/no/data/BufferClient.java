@@ -10,4 +10,8 @@ public class BufferClient
     {
         System.out.println( "Hello World!" );
     }
+
+    public String concatenate(Buffer buffer) {
+        return buffer.toString();
+    }
 }
