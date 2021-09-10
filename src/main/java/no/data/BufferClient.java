@@ -4,7 +4,7 @@ package no.data;
  * Hello world!
  *
  */
-public class App 
+public class BufferClient
 {
     public static void main( String[] args )
     {
