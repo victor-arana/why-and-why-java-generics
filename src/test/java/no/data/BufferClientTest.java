@@ -15,4 +15,12 @@ public class BufferClientTest
 
         Assert.assertEquals("abcd", (new BufferClient()).concatenate(buffer));
     }
+
+    @Test(expected = ClassCastException.class)
+    public void shouldThrowAClassCastException() {
+        Buffer buffer = new CircularBuffer(10);
+        buffer.offer("1");
+        buffer.offer(1);
+        (new BufferClient()).concatenate(buffer);
+    }
 }
