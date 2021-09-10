@@ -12,6 +12,14 @@ public class BufferClient
     }
 
     public String concatenate(Buffer buffer) {
-        return buffer.toString();
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String bufferElement;
+        while((bufferElement = (String) buffer.poll()) != null){
+            stringBuilder.append(bufferElement);
+        }
+
+        return stringBuilder.toString();
     }
 }
