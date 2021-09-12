@@ -23,8 +23,8 @@ public class BufferClientTest
         Assert.assertEquals("abcd", (new BufferClient()).concatenate(buffer));
     }
 
-    @Test(expected = ClassCastException.class)
-    public void shouldThrowAClassCastException() {
+    @Test
+    public void shouldNotThrowAClassCastException() {
         buffer.offer("1");
         buffer.offer(1);
         (new BufferClient()).concatenate(buffer);
