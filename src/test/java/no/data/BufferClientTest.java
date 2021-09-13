@@ -7,11 +7,11 @@ import org.junit.Test;
 public class BufferClientTest
 {
 
-    private CircularBuffer buffer;
+    private GenericCircularBuffer<String> buffer;
 
     @Before
     public void init(){
-        buffer = new CircularBuffer(10);
+        buffer = new GenericCircularBuffer<>(10);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class BufferClientTest
     @Test
     public void shouldNotThrowAClassCastException() {
         buffer.offer("1");
-        buffer.offer(1);
+        //buffer.offer(1);
         (new BufferClient()).concatenate(buffer);
     }
 }

@@ -11,7 +11,7 @@ public class BufferClient
         System.out.println( "Hello World!" );
     }
 
-    public String concatenate(CircularBuffer buffer) {
+    public String concatenate(GenericCircularBuffer<String> buffer) {
 
         StringBuilder stringBuilder = new StringBuilder();
 
