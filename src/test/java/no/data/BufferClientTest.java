@@ -7,7 +7,7 @@ import org.junit.Test;
 public class BufferClientTest
 {
 
-    private CircularBuffer<String> buffer;
+    private Buffer<String> buffer;
 
     @Before
     public void init(){
