@@ -6,7 +6,7 @@ import org.junit.Test;
 public class CircularBufferTest {
 
     // Given a Buffer with size = 2
-    private GenericCircularBuffer<String> buffer = new GenericCircularBuffer<>(2);
+    private CircularBuffer<String> buffer = new CircularBuffer<>(2);
 
     @Test
     public void shouldOfferPollableElement(){
