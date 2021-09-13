@@ -1,6 +1,6 @@
 package no.data;
 
-public class CircularBuffer<T> {
+public class CircularBuffer<T> implements Buffer<T> {
 
     private final T[] buffer;
     private int readCursor = 0;
@@ -10,6 +10,7 @@ public class CircularBuffer<T> {
         buffer = (T[]) new Object[size];
     }
 
+    @Override
     public boolean offer(T value) {
         if(buffer[writeCursor] != null){
             return false;
@@ -20,6 +21,7 @@ public class CircularBuffer<T> {
         return true;
     }
 
+    @Override
     public T poll() {
         T value = buffer[readCursor];
         if ( value != null) {
