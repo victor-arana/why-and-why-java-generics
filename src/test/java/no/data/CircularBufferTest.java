@@ -16,30 +16,53 @@ import org.junit.Test;
  */
 public class CircularBufferTest {
 
+    /**
+     * Should return true when offer an element in a
+     * non-empty buffer.
+     */
     @Test
     public void shouldOfferElement(){
-        CircularBuffer buffer = new CircularBuffer(1);
+        // Given a non-empty buffer
+        final int bufferSize = 1;
+        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        // When offer an element
         Assert.assertTrue(buffer.offer(1));
     }
 
+    /**
+     * Should return the first element that came in
+     * a full Circular Buffer with size > 1
+     */
     @Test
     public void shouldPollElement(){
-        CircularBuffer buffer = new CircularBuffer(3);
+        // Given a full Circular Buffer with size > 1
+        final int bufferSize = 2;
+        CircularBuffer buffer = new CircularBuffer(bufferSize);
         buffer.offer(1);
         buffer.offer(2);
-        buffer.offer(3);
         // When polling an element return the first element
         // that came into the buffer
         Assert.assertEquals(1, buffer.poll());
     }
 
+    /**
+     * Should return false when offering an element
+     * to a full Circular Buffer.
+     */
     @Test
     public void shouldNotOfferWhenBufferIsFull(){
-        CircularBuffer buffer = new CircularBuffer(1);
+        // Given a full Circular Buffer
+        final int bufferSize = 1;
+        CircularBuffer buffer = new CircularBuffer(bufferSize);
         buffer.offer(1);
+        // When offering an element return false
         Assert.assertFalse(buffer.offer(3));
     }
 
+    /**
+     * Should return null when polling an empty
+     * Buffer.
+     */
     @Test
     public void shouldNotPollWhenBufferIsEmpty(){
         // Given an empty buffer with size 1.
@@ -49,13 +72,19 @@ public class CircularBufferTest {
         Assert.assertNull(buffer.poll());
     }
 
+
     @Test
     public void shouldRecycleBuffer(){
-        CircularBuffer buffer = new CircularBuffer();
+        // Given a full Circular Buffer
+        final int bufferSize = 2;
+        CircularBuffer buffer = new CircularBuffer(bufferSize);
         buffer.offer(1);
         buffer.offer(2);
+        // After polling one element and offering a new
+        // element
         Assert.assertEquals(1, buffer.poll());
         buffer.offer(3);
+        // The last element occupies the place left
         Assert.assertEquals(2, buffer.poll());
         Assert.assertEquals(3, buffer.poll());
     }
