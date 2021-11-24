@@ -88,4 +88,9 @@ public class CircularBufferTest {
         Assert.assertEquals(2, buffer.poll());
         Assert.assertEquals(3, buffer.poll());
     }
+
+    @Test
+    public void shouldPrintBufferContent(){
+
+    }
 }
