@@ -43,6 +43,13 @@ public class CircularBuffer {
     }
 
     public String printContent() {
-        return this.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        Object bufferElement;
+        while( (bufferElement = this.poll()) != null ) {
+            stringBuilder.append(bufferElement.toString());
+        }
+
+        return stringBuilder.toString();
     }
 }
