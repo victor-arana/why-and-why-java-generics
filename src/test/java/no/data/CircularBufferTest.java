@@ -91,6 +91,14 @@ public class CircularBufferTest {
 
     @Test
     public void shouldPrintBufferContent(){
-
+        // Given a partially filled Circular buffer
+        final int bufferSize = 10;
+        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        buffer.offer(1);
+        buffer.offer("23");
+        buffer.offer(4);
+        // When printing buffer content
+        Assert.assertEquals("1234", buffer.printContent());
     }
+
 }
