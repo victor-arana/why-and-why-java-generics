@@ -41,4 +41,8 @@ public class CircularBuffer {
     private int next(int index) {
         return (index + 1) % elements.length;
     }
+
+    public String printContent() {
+        return this.toString();
+    }
 }
