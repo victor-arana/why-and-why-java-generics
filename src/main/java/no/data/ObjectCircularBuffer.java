@@ -1,13 +1,13 @@
 package no.data;
 
-public class CircularBuffer {
+public class ObjectCircularBuffer {
 
     // Buffer elements
     private final Object[] elements;
     private int readCursor = 0;
     private int writeCursor = 0;
 
-    public CircularBuffer(int size) {
+    public ObjectCircularBuffer(int size) {
         elements = new Object[size];
     }
 

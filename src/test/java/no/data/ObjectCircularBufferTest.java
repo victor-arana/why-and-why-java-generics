@@ -14,7 +14,7 @@ import org.junit.Test;
  *    Returns The first element that came into the buffer or null
  *    if the buffer is empty.
  */
-public class CircularBufferTest {
+public class ObjectCircularBufferTest {
 
     /**
      * Should return true when offer an element in a
@@ -24,7 +24,7 @@ public class CircularBufferTest {
     public void shouldOfferElement(){
         // Given a non-empty buffer
         final int bufferSize = 1;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         // When offer an element
         Assert.assertTrue(buffer.offer(1));
     }
@@ -37,7 +37,7 @@ public class CircularBufferTest {
     public void shouldPollElement(){
         // Given a full Circular Buffer with size > 1
         final int bufferSize = 2;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         buffer.offer(1);
         buffer.offer(2);
         // When polling an element return the first element
@@ -53,7 +53,7 @@ public class CircularBufferTest {
     public void shouldNotOfferWhenBufferIsFull(){
         // Given a full Circular Buffer
         final int bufferSize = 1;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         buffer.offer(1);
         // When offering an element return false
         Assert.assertFalse(buffer.offer(3));
@@ -67,7 +67,7 @@ public class CircularBufferTest {
     public void shouldNotPollWhenBufferIsEmpty(){
         // Given an empty buffer with size 1.
         final int bufferSize = 1;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         // When polling the buffer return Null
         Assert.assertNull(buffer.poll());
     }
@@ -77,7 +77,7 @@ public class CircularBufferTest {
     public void shouldRecycleBuffer(){
         // Given a full Circular Buffer
         final int bufferSize = 2;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         buffer.offer(1);
         buffer.offer(2);
         // After polling one element and offering a new
@@ -93,7 +93,7 @@ public class CircularBufferTest {
     public void shouldPrintBufferContent(){
         // Given a partially filled Circular buffer
         final int bufferSize = 10;
-        CircularBuffer buffer = new CircularBuffer(bufferSize);
+        ObjectCircularBuffer buffer = new ObjectCircularBuffer(bufferSize);
         buffer.offer(1);
         buffer.offer("23");
         buffer.offer(4);
