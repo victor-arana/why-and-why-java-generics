@@ -6,7 +6,13 @@ package no.data;
  */
 public class CircularBuffer<T> {
 
+    // Buffer elements
+    private final T[] elements;
+    private int readCursor = 0;
+    private int writeCursor = 0;
+
     public CircularBuffer(int size) {
+        elements = (T[]) new Object[size];
     }
 
     /**
@@ -14,7 +20,15 @@ public class CircularBuffer<T> {
      * @return true if succeeds, false otherwise.
      */
     public boolean offer(T element) {
-        return false;
+        // Check if it's possible to write
+        // a new element
+        if(elements[writeCursor] == null){
+            elements[writeCursor] = element;
+            writeCursor = next(writeCursor);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -23,7 +37,16 @@ public class CircularBuffer<T> {
      * buffer or null if the buffer is empty
      */
     public T poll() {
-        return null;
+        T element = elements[readCursor];
+        if (element == null) {
+            return null;
+        } else {
+            // remove element from buffer
+            elements[readCursor] = null;
+            // updated readCursor
+            readCursor = next(readCursor);
+            return element;
+        }
     }
 
     /**
@@ -32,6 +55,19 @@ public class CircularBuffer<T> {
      * of the Buffer
      */
     public String printContent() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        T bufferElement;
+        while( (bufferElement = this.poll()) != null ) {
+            stringBuilder.append(bufferElement.toString());
+        }
+
+        return stringBuilder.toString();
+    }
+
+    // Returns the next cursor position
+    // in a circular manner
+    private int next(int index) {
+        return (index + 1) % elements.length;
     }
 }
