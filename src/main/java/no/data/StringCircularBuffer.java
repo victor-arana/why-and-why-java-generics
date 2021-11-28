@@ -5,15 +5,30 @@ package no.data;
  * Elements that come in first, come out first.
  */
 public class StringCircularBuffer {
+
+    private final String[] elements;
+    private int writeCursor;
+    private int readCursor;
+
     public StringCircularBuffer(int bufferSize) {
+        elements = new String[bufferSize];
     }
 
     /**
      * Writes a String element to the Buffer.
      * @return true if succeeds, false otherwise.
      */
-    public boolean offer(String s) {
-        return false;
+    public boolean offer(String element) {
+        // Check if it's possible to write
+        // a new element
+        if (elements[writeCursor] == null) {
+            elements[writeCursor] = element;
+            writeCursor = next(writeCursor);
+            return true;
+        } else {
+            return false;
+
+        }
     }
 
     /**
@@ -22,7 +37,16 @@ public class StringCircularBuffer {
      * buffer or null if the buffer is empty
      */
     public String poll() {
-        return "";
+        String element = elements[readCursor];
+        if (element == null) {
+            return null;
+        } else {
+            // remove element from buffer
+            elements[readCursor] = null;
+            // updated readCursor
+            readCursor = next(readCursor);
+            return element;
+        }
     }
 
     /**
@@ -31,6 +55,20 @@ public class StringCircularBuffer {
      * of the Buffer
      */
     public String printContent() {
-        return "";
+        StringBuilder stringBuilder = new StringBuilder();
+
+        String bufferElement;
+        while( (bufferElement = this.poll()) != null ) {
+            stringBuilder.append(bufferElement);
+        }
+
+        return stringBuilder.toString();
     }
+
+    // Returns the next cursor position in a
+    // circular manner
+    private int next(int readCursor) {
+        return (readCursor + 1) % elements.length;
+    }
+
 }
